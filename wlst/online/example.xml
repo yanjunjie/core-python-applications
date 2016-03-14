@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file contains meta-data about the associated example.  
+This file and its contents are not required to build, deploy, 
+or execute the example.  The meta-data is intended for Oracle
+internal use only.
+
+Copyright (c) 2011, Oracle and/or its affiliates. All Rights Reserved.
+-->
+<example
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://samples.beasys.com/example.xsd">
+  <name>WLST Online Scripts</name>
+  <description>These examples show how to use the WebLogic Scripting Tool (WLST) to configure and manage a running WebLogic Administration Server.</description>
+  <date>2004-10-10-07:00</date>
+  <author>Oracle</author>
+  <version>1.0</version>
+  <package>examples.wlst.online</package>
+  <zip>wlst_online</zip>
+  <wlsCompatibility>9.0</wlsCompatibility>
+  <parentCategory>Configuration</parentCategory>
+  <childCategory>WebLogic Scripting Tool</childCategory>
+  <subCategory>Online</subCategory>
+  <wlsConfiguration/>
+  <coconutTests>
+    <buildTest>
+        <![CDATA[
+        <test name="build-wlst/online">
+        <ant-task>
+          <ant dir="${examples.src.dir}/examples/wlst/online"/>
+          <sleep seconds="5"/>
+        </ant-task>
+      </test>
+      ]]>
+    </buildTest>
+    <executeTest>
+        <![CDATA[
+        <test name="run-wlst/online/run_cluster_creation" 
+        requiresSuccess="build-wlst/online">
+        <ant-task>
+          <ant dir="${examples.src.dir}/examples/wlst/online" target="run.cluster.creation"/>
+        </ant-task>
+      </test>
+      <test name="run-wlst/online/run_cluster_deletion" 
+        requiresSuccess="build-wlst/online">
+        <ant-task>
+          <ant dir="${examples.src.dir}/examples/wlst/online" target="run.cluster.deletion"/>
+        </ant-task>
+      </test>
+        <test name="run-wlst/online/run_jdbc_pool_creation" 
+        requiresSuccess="build-wlst/online">
+        <ant-task>
+          <ant dir="${examples.src.dir}/examples/wlst/online" target="run.jdbc.data.source.creation"/>
+        </ant-task>
+      </test>
+      <test name="run-wlst/online/run_jdbc_pool_deletion" 
+        requiresSuccess="build-wlst/online">
+        <ant-task>
+          <ant dir="${examples.src.dir}/examples/wlst/online" target="run.jdbc.data.source.deletion"/>
+        </ant-task>
+      </test>
+      <test name="run-wlst/online/run_config_jms_system_rsource_creation" 
+        requiresSuccess="build-wlst/online">
+        <ant-task>
+            <ant dir="${examples.src.dir}/examples/wlst/online" target="run.config.jms.system.resource.creation"/>
+        </ant-task>
+      </test>
+      <test name="run-wlst/online/run_config_jms_system_resource_deletion" 
+        requiresSuccess="build-wlst/online">
+        <ant-task>
+          <ant dir="${examples.src.dir}/examples/wlst/online" target="run.config.jms.system.resource.deletion"/>
+        </ant-task>
+      </test>
+      ]]>
+    </executeTest>
+  </coconutTests>
+  <build>
+    <deployable>true</deployable>
+  </build>
+  <execution>
+    <url>examplesWebApp/index.jsp</url>
+    <target>run</target>
+  </execution>
+</example>

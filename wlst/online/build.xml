@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="wlst.online" default="all" basedir=".">
+  <!-- set global properties for this build -->
+  <property environment="env"/>
+  <property file="../../../examples.properties"/>
+  <property name="source" value="${basedir}"/>
+  
+  <target name="all" 
+  	depends="run.cluster.creation, 
+  					 run.cluster.deletion, 
+  					 run.jdbc.data.source.creation, 
+  					 run.jdbc.data.source.deletion,
+					 run.config.jms.system.resource.creation,
+					 run.config.jms.system.resource.deletion"/>
+  
+  <target name="build" description="No building necessary."/>
+  <target name="clean" description="No cleaning necessary."/>
+
+  <target name="run.cluster.creation">
+    <java classname="weblogic.WLST" fork="yes">
+     <arg line="cluster_creation.py" />
+    </java>
+  </target>
+  
+  <target name="run.cluster.deletion">
+    <java classname="weblogic.WLST" fork="yes">
+     <arg line="cluster_deletion.py" />
+    </java>
+  </target>  
+  
+  <target name="run.jdbc.data.source.creation">
+    <java classname="weblogic.WLST" fork="yes">
+     <arg line="jdbc_data_source_creation.py" />
+    </java>
+  </target>
+  
+  <target name="run.jdbc.data.source.deletion">
+    <java classname="weblogic.WLST" fork="yes">
+     <arg line="jdbc_data_source_deletion.py" />
+    </java>
+  </target> 
+  
+  <target name="run.config.jms.system.resource.creation">
+		<java classname="weblogic.WLST" fork="yes">
+		 <arg line="configJMSSystemResource.py" />
+		</java>
+	 </target>  
+	  
+	<target name="run.config.jms.system.resource.deletion">
+		<java classname="weblogic.WLST" fork="yes">
+		 <arg line="deleteJMSSystemResource.py" />
+		</java>
+  </target>  
+</project>

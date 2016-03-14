@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><!-- InstanceBegin template="/Templates/instructions_template.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+  <!-- InstanceBeginEditable name="doctitle" -->
+<title>WLST Online Scripts</title>
+<!-- InstanceEndEditable -->
+  
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  
+  <link href="../../../../../docs/css/samples.css" rel="stylesheet" title="Style" type="text/css" />
+  
+  <script language="JavaScript" src="../../../../../docs/core/topicInfo.js" type="text/JavaScript"></script>
+  <script language="JavaScript" src="../../../../../docs/core/CookieClass.js" type="text/JavaScript"></script>
+  <script language="JavaScript" src="../../../../../docs/core/displayContent.js" type="text/JavaScript"></script>
+  
+  <!-- InstanceBeginEditable name="head" -->
+
+<!-- InstanceEndEditable -->
+	
+<a href="../../../../../docs/core/index.html"></a>
+
+</head>
+
+<body>
+
+	<script language="JavaScript" type="text/JavaScript">
+		try {
+			displayInFrames();
+		}
+		catch (e) {
+		document.write("<table width='100%'><tr><td bgcolor='#19355E' align='left' height='42'; valign='top'><p style='color:white;font-size:130%;font-weight:bold;margin-top:4px;margin-bottom:0;'>WebLogic Server<sup>&reg;</sup> 10.0</p><p style='color:white;font-size:110%;margin-top:2px;margin-bottom:4px;'>Code Examples</p></td></tr></table>");
+			}
+	</script>
+
+  <h1> <script language="JavaScript" type="text/JavaScript">document.write(document.title);</script></h1>
+  <p> 
+  	<a class="navbutton" href="#files">&nbsp;Files&nbsp;</a> 
+	<a class="navbutton" href="#prepare">&nbsp;Prepare&nbsp;</a> 
+	<a class="navbutton" href="#run">&nbsp;Run&nbsp;</a> 
+	<a class="navbutton" href="#troubleshooting" >&nbsp;Troubleshooting&nbsp;</a>	
+	<a class="navbutton" href="#related_topics">&nbsp;Related Topics&nbsp;</a> 
+  </p> 
+
+<h2>About the Example </h2>
+<!-- InstanceBeginEditable name="about" -->
+<p>These examples show how to use the WebLogic Scripting Tool (WLST) to configure and manage WebLogic Server® instances and domains while connected to a running WebLogic Administration Server. </p>
+<!-- InstanceEndEditable -->
+<hr />
+<a name="files" id="files"></a>
+<h2>Files Used in the Example</h2>
+<p class="smaller" >Directory Location:</p>
+<p class="smaller" style="font-family:'Courier New',monospace;" ><em>MW_HOME</em>/wlserver_10.3/samples/server/examples/<!-- InstanceBeginEditable name="PATHTOEXAMPLE" -->src/examples/wlst/online/<!-- InstanceEndEditable --></p>
+<p class="smaller" >(where <span style="font-style:italic;font-family:'Courier New',monospace;COLOR: #000000;">MW_HOME</span> is the directory containing your WebLogic Server installation)</p>
+
+<!-- InstanceBeginEditable name="files" -->
+<table border="1" cellpadding="3" cellspacing="0" >
+  <tr>
+    <th><p>File</p>
+      <p style="font-size:75%;font-weight:normal;margin-top:0em">Click source
+        files to view code.</p></th>
+    <th><p>Description</p></th>
+  </tr>
+  <tr>
+    <td><a href="build.xml" target="_blank">build.xml</a></td>
+    <td>Ant build file that contains targets for building and running the example.</td>
+  </tr>
+  <tr>
+    <td><a href="cluster_creation.py" target="_blank">cluster_creation.py</a></td>
+    <td>Connects WLST to an Administration Server, starts an edit session, and creates 10 Managed Servers. Then creates two clusters, assigns servers to each cluster, and disconnects WLST from the server.</td>
+  </tr>
+  <tr>
+    <td><a href="cluster_deletion.py" target="_blank">cluster_deletion.py</a></td>
+    <td>Removes the clusters and servers created in <code>cluster_creation.py</code>.</td>
+  </tr>
+  <tr>
+    <td><a href="jdbc_data_source_creation.py" target="_blank">jdbc_data_source_creation.py</a></td>
+    <td>Connects WLST to an Administration Server, starts an edit session, and creates a JDBC data source called <em>myJDBCDataSource</em>. </td>
+  </tr>
+  <tr>
+    <td><a href="jdbc_data_source_deletion.py" target="_blank">jdbc_data_source_deletion.py</a></td>
+    <td>Removes the JDBC data source created by <code>jdbc_data_source_creation.py</code>.</td>
+  </tr>
+  <tr>
+    <td><a href="configJMSSystemResource.py" target="_blank">configJMSSystemResource.py</a></td>
+    <td>Connects WLST to an Administration Server, starts an edit session, creates two JMS Servers, and targets them to the Administration Server. Then creates JMS topics, JMS queues, and JMS templates in a JMS System module. The JMS queues and topics are targeted using sub-deployments.</td>
+  </tr>
+  <tr>
+    <td><a href="deleteJMSSystemResource.py" target="_blank">deleteJMSSystemResource.py</a></td>
+    <td>Removes the JMS System module created by <code>configJMSSystemResource.py</code>.</td>
+  </tr>
+</table>
+<!-- InstanceEndEditable -->
+<hr />
+
+<a name="prepare" id="prepare"></a>
+<h2>Prepare the Example</h2>
+<!-- InstanceBeginEditable name="build" -->
+
+
+<h3>Prerequisites</h3>
+<p>Before working with this example: </p>
+
+<ol>
+  <li><a href="http://download.oracle.com/docs/cd/E23943_01/web.1111/../doc.1111/e14142/toc.htm" target="_blank">Install
+      WebLogic Server</a>, including the
+      examples.</li>
+  <li><a href="javascript:reloadTOC('../../examples.html#startServer')">Start
+      the Examples server.</a></li>
+</ol>
+<a name="build" id="build"></a>
+<h3>Configure WebLogic Server</h3>
+<p>&nbsp;&nbsp;No special configuration is
+  required for this example.</p>
+<a name="build" id="build"></a>
+<h3>Build and Deploy the Example</h3>
+<p>There are no build and deploy instructions for this
+  example.</p>
+<!-- InstanceEndEditable -->
+<hr />
+<a name="run" id="run"></a>
+<h2>Run the Example</h2>
+<!-- InstanceBeginEditable name="run" -->
+<p>There are two scripts, a creation and a deletion script, for each example scenario. First run the creation script   and then the deletion script. </p>
+<p>To run the examples, follow these steps: </p>
+<ol>
+  <li>Open  a command window and set up your development shell as described in <a href="../../examples.html#quick">Setting Up Your Environment</a>. </li>
+  <li> Change to the <tt><i>SAMPLES_HOME</i>\server\examples\src\examples\wlst\online</tt> directory, where <i><font size="-1"><code>SAMPLES_HOME</code></font></i> refers to the main WebLogic Server examples directory, such as <tt>c:\Oracle\Middleware\wlserver_10.3\samples</tt>. </li>
+  <li>Run all the examples by executing the <a href="javascript:reloadTOC('../../examples.html#buildScripts')">Ant utility</a> at the command line:
+        <pre><font face="Courier New"><strong>prompt&gt; ant
+</strong></font></pre>
+  <p>        Alternatively, you can execute the scripts one at a time from the WLST shell (Steps 4-7):</p>
+  </li>
+  <li>Invoke WLST by entering the following command:
+      <pre><font face="Courier New"><strong>prompt&gt; java weblogic.WLST</strong></font></pre>
+  A welcome message and the WLST prompt appears:
+  <pre><font face="Courier New"><strong>Initializing WebLogic Scripting Tool (WLST) ...
+  <br />Welcome to WebLogic Server Administration Scripting Shell
+  <br />Type help() for help on available commands
+  <br />wls:/offline&gt;
+  </strong></font></pre>
+  </li>
+  	<li>Run the cluster creation  script by entering the following command:
+      <p></p>
+    <pre><font face="Courier New"><strong>wls:/offline&gt; execfile('cluster_creation.py')</strong></font></pre>
+    <p>The servers and clusters are created.</p>
+  </li>
+  <li>Run the cluster deletion script to remove the servers and clusters:
+      <p> </p>
+
+    <pre><font face="Courier New"><strong>wls:/offline&gt; execfile('cluster_deletion.py')</strong></font></pre>
+  <p> You have  successfully run the WLST cluster examples. </p>
+  </li>
+<li>
+      <p>Run the other WLST examples in a similar manner, using the <code>execfile</code> command with the creation script file name and then   deletion.</p>
+     <h3>Check the Output</h3>
+    <p>If the Ant example runs successfully, you will get the following message in the command shell from which you ran the client application:
+    </p>
+    <p><font size="-1" face="Courier New, Courier, mono">Buildfile: build.xml </font>
+    </p>
+    <p><font size="-1" face="Courier New, Courier, mono">run:cluster.creation<br />
+      ...
+    </font></p>
+    <p><font size="-1" face="Courier New, Courier, mono">BUILD SUCCESSFUL<br />
+      Total time: 1 minute 17 seconds</font></p>
+  </li>
+</ol>
+<!-- InstanceEndEditable -->
+<hr />
+<h2>Troubleshooting</h2>
+<a name="troubleshooting" id="troubleshooting"></a>
+<!-- InstanceBeginEditable name="troubleshooting" -->
+<ul>
+  <li><a href="../javascript:reloadTOC('../../../examples.html#troubleshooting')">General
+    Troubleshooting Tips for Examples </a></li>
+</ul>
+<!-- InstanceEndEditable -->
+<hr />
+<h2>Related Topics</h2>
+<p class="smaller">(Internet connection required.)</p>
+<a name="related_topics" id="related_topics"></a> 
+<!-- InstanceBeginEditable name="related_topics" -->
+<ul>
+  <li><a href="http://download.oracle.com/docs/cd/E23943_01/web.1111/e13715/toc.htm" target="_blank">WebLogic Scripting Tool</a></li>
+<li><a href="http://download.oracle.com/docs/cd/E23943_01/web.1111/e13706/toc.htm" target="_blank">Developing WebLogic Server Applications</a></li>
+</ul>
+<!-- InstanceEndEditable -->
+
+<hr />	
+<p><a href="../../copyright.html">Copyright</a> © 1996, 2011, Oracle and/or its affiliates. All  Rights Reserved. </p>
+
+</body>
+<!-- InstanceEnd --></html>
